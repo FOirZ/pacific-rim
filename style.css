@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #0ff;
+  --secondary: #08f;
+  --neon-green: #0f0;
+  --dark-bg: #0a0f1a;
+  --glow: 0 0 10px #0ff, 0 0 20px #0ff;
+}
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(135deg, #000814, #001d3d, #003566);
+  background-size: 400% 400%;
+  animation: bgMove 20s infinite;
+  color: var(--primary);
+  min-height: 100vh;
+}
+
+@keyframes bgMove {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #000814;
+  border-bottom: 2px solid var(--primary);
+}
+
+.logo {
+  font-size: 1.8rem;
+  color: var(--primary);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--primary);
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--neon-green);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+header {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+h1 {
+  font-size: 3rem;
+  color: var(--primary);
+  text-shadow: var(--glow);
+}
+
+p {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.glow-button {
+  margin-top: 2rem;
+  padding: 0.8rem 2rem;
+  border: none;
+  background: var(--secondary);
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 5px;
+  box-shadow: var(--glow);
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.glow-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px var(--neon-green), 0 0 40px var(--neon-green);
+}
+
+.cards-section {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 3rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: transparent;
+  width: 200px;
+  height: 250px;
+  perspective: 1000px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: #001d3d;
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  box-shadow: var(--glow);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background: #003566;
+}
